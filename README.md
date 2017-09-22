@@ -69,7 +69,7 @@ Final Exam   |    50  |  25% |
 
 | Date | Day | Topic | Readings | Homework |
 |------|-----|-------|----------|----------|
-| Sep. 25 | M | Python, Git, OG Models        | Chs. 1, 2   |      |
+| Sep. 25 | M | Python, Git, OG Models        | Ch. 1, [tutorials]()   |      |
 |         |   |                               | Weil (2008) |      |
 |         |   |                               | N&S (2007)  |      |
 | Sep. 27 | W | 3-period-lived model: theory  | Ch. 5       | PS 1 |
@@ -95,8 +95,8 @@ Final Exam   |    50  |  25% |
 |         |    |                               | DEP (2016)  |      |
 | Nov. 20 | M | Tax functions from microsimulation | Ch. 12 | PS6  |
 | Nov. 22 | W | Tax functions from microsimulation | Ch. 12 |      |
-| Nov. 27 | M |                               |             | PS 7 |
-| Nov. 29 | W |                               |             | PS 7 |
+| Nov. 27 | M | Multiple industry model | Ch. 17   | PS 7 |
+| Nov. 29 | W | Multiple industry model | Ch. 17   |      |
 |         |    | *Exam preparation (reading) days, Nov. 30-Dec. 1* |  |   |
 | **Dec. 6** | **W** | **Final Exam (comprehensive)** |      |      |
 |         |     | **1:30-3:30p.m. in Swift 208** |           |      |
