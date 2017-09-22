@@ -17,7 +17,7 @@ Advanced undergraduate or first-year graduate microeconomic theory, linear algeb
 
 ## Texts ##
 
-* Evans, Richard W., _Overlapping Generations Models for Policy Analysis: Theory and Computation_, unpublished draft (2017).
+* Evans, Richard W. and Jason DeBacker, *Overlapping Generations Models for Policy Analysis: Theory and Computation*, unpublished draft (2017).
 
 
 ## Course description ##
@@ -61,8 +61,8 @@ Final Exam   |    50  |  25% |
 	* You must write and submit your own computer code, although I encourage you to collaborate with your fellow students. I **DO NOT** want to see a bunch of copies of identical code. I **DO** want to see each of you learning how to code these problems so that you could do it on your own.
 	* Problem set solutions, both written and code portions, will be turned in via a pull request from your private [GitHub.com](https://git-scm.com/) repository which is a fork of the class master repository on my account. (You will need to set up a GitHub account if you do not already have one.)
 	* Problem sets will be due on the day listed in the Daily Course Outline section of this syllabus (see below) unless otherwise specified. Late homework will not be graded.
-* **Midterm:** The midterm will be given on Thursday, October 27, during class and will cover the material up to that point in the course.
-* **Final Exam:** The final exam will be comprehensive and will be given on Tuesday, Dec. 6, from 10:30a.m. to 12:30p.m. in our classroom (Saieh 102).
+* **Midterm:** The midterm will be given on Wednesday, October 25, during class and will cover the material up to that point in the course.
+* **Final Exam:** The final exam will be comprehensive and will be given on Wednesday, Dec. 6, from 1:30 to 3:30p.m. in our classroom (Swift 208).
 
 
 ## Daily Course Schedule ##
@@ -107,7 +107,7 @@ Final Exam   |    50  |  25% |
 * De Nardi, Mariacristina, "[Quantitative Models of Wealth Inequality: A Survey](http://users.nber.org/~denardim/research/NBERwp21106.pdf)," National Bureau of Economic Research, NBER Working Paper 21106 (April 2015).
 * DeBacker, Jason, Richard W. Evans, Evan Magnusson, Kerk L. Phillips, Shanthi Ramnath, and Isaac Swift, "[The Distributional Effects of Redistributional Tax Policy](https://sites.google.com/site/rickecon/WealthTax.pdf)," under review at *Quantitative Economics* (August 2016).
 * DeBacker, Jason, Richard W. Evans, and Kerk L. Phillips, "[Integrating Microsimulation Tax Functions into a DGE Macroeconomic Model: A Canonical Example](https://sites.google.com/site/rickecon/DEP_10pct.pdf)," mimeo (August 2016).
-* Evans, Richard W., *Overlapping Generations Models for Policy Analysis: Theory and Computation*, unpublished draft (2016).
+* Evans, Richard W. and Jason DeBacker, *Overlapping Generations Models for Policy Analysis: Theory and Computation*, unpublished draft (2017).
 * Evans, Richard W. and Kerk L. Phillips, "[Advantages of an Ellipse when Modeling Leisure Utility](https://sites.google.com/site/rickecon/Elliptical.pdf)," *Computational Economics*, (forthcoming, 2016).
 * Nishiyama, Shinichi, "Fiscal Policy Effects in a Heterogeneous-agent OLG economy with an Aging Population," *Journal of Economic Dynamics & Control*, 61, pp. 114-132 (December 2015).
 * Nishiyama, Shinichi and Kent Smetters, "Does Social Security Privatization Produce Efficiency Gains?," *Quarterly Journal of Economics*, 122:4, pp. 1677-1719 (November 2007).
