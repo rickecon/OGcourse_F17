@@ -1,0 +1,103 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{geometry}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1.25in,rmargin=1.25in}
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\footnotesize\textsl{Page \thepage\ of \pageref{LastPage}}}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+\usepackage[format=hang,font=normalsize,labelfont=bf]{caption}
+\usepackage{listings}
+\lstset{frame=single,
+  language=Python,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{harvard}
+\usepackage{setspace}
+\usepackage{float,color}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks,linkcolor=red,urlcolor=blue}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{derivation}{Derivation} % Number derivations on their own
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition} % Number propositions on their own
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+%\numberwithin{equation}{section}
+\bibliographystyle{aer}
+\newcommand\ve{\varepsilon}
+\newcommand\boldline{\arrayrulewidth{1pt}\hline}
+
+
+\begin{document}
+
+\begin{flushleft}
+  \textbf{\large{Problem Set 1}} \\
+  MACS 40000, Dr. Evans \\
+  Sophia Mo
+\end{flushleft}
+
+\vspace{5mm}
+
+\noindent\textbf{Problem 2(a)}\\
+The Lagrange function is:
+\begin{equation*}
+  (1-\beta)ln(c_{1,t})+\beta ln(c_{2, {t+1}})-\lambda[p_te_1+p_{t+1}e_2-p_tc_{1,t}-p_{t+1}c_{2, t+1}]
+\end{equation*}
+The first order conditions are,
+\begin{align*}
+\frac{1-\beta}{c_{1,t}}&=\lambda p_t\\
+\frac{\beta}{c_{2, {t+1}}}&=\lambda p_{t+1}
+\end{align*}
+Combining the two equations above, we get
+\begin{equation*}
+  c_{2,{t+1}}=\frac{\beta}{1-\beta}\frac{p_t}{p_{t+1}}c_{1,t}
+\end{equation*}
+Plugging it into the budget constraint, we get
+\begin{align*}
+c_{1,t} &= \frac{(p_te_1+p_{t+1}e_2)(1-\beta)}{p_t}\\
+c_{2,t+1}&= \frac{(p_te_1+p_{t+1}e_2)\beta}{p_{t+1}}
+\end{align*}
+
+\noindent\textbf{Problem 2(b)}\\
+Since the utility of initial old increases as her consumption in the second period increases, the initial old would want to exhaust her resource in the last period of her life, so $c_{2,1}=\frac{p_1e_2}{p_1}=e_2$. \\
+\\
+\noindent\textbf{Problem 2(c)}\\
+At competitve equilibrium, the amount of borrowing and lending must be equal for each period. In period 1, the initial old would want to consume all her endowment $e_2$, leaving the young born in period 1 with nothing to borrow and her own endowment $e_1$ to consume. Going into the next period, the individual born in period 1 consumes her period-2 endowment $e_2$, leaving the one born in period 2 with $e_1$ to consume. This reasoning applies to every period--the old in that period consumes all her endowment $e_2$, and the young could only consume all the nonstorable $e_1$. $\{c_{1,t}, c_{2,t}\}_{t=1}^\infty = \{e_1, e_2\} $.\\
+\\
+Since there is no intergenerational transfer going on, prices are indeterminate. The competitive equilibrium is not necessarily equal to my anwer in part (a). Plugging $e_1, e_2$ into the intertemporal euler equation in part (a), we get $\frac{e_2}{e_1}=\frac{\beta}{1-\beta} \frac{p_{t}}{p_{t+1}}$. When normalizing $p_1=1$, we get $p_t = (\frac{\beta}{1-\beta}\frac{e_1}{e_2})^{t-1}$. Only when imposing this vector of prices could we obtain a competitive equilibrium that is same to the answer in part (a).
+\end{document}
