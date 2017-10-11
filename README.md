@@ -72,14 +72,14 @@ Final Exam   |    50  |  25% |
 | Sep. 25 | M | Python, Git, OG Models        | Ch. 1, [tutorials](https://github.com/rickecon/OGcourse_F17/tree/master/Tutorials)   |      |
 |         |   |                               | Weil (2008) |      |
 |         |   |                               | N&S (2007)  |      |
-| Sep. 27 | W | 3-period-lived model: theory  | Ch. 5       | PS 1 |
+| Sep. 27 | W | 3-period-lived model: theory  | Ch. 5       | [PS 1](https://github.com/rickecon/OGcourse_F17/blob/master/ProblemSets/PS1/PS1.pdf) |
 | Oct.  2 | M | 3-period-lived model: theory  | Ch. 5       |      |
 | Oct.  4 | W | 3-period-lived model: computation | Ch. 5   |      |
 | Oct. 9 | M | *S*-period-lived model        | Ch. 6       |      |
-| Oct. 11 | W | Endogenous labor supply       | Ch. 7       | PS 2 |
+| Oct. 11 | W | Endogenous labor supply       | Ch. 7       | [PS 2](https://github.com/rickecon/OGcourse_F17/blob/master/ProblemSets/PS2/PS2.pdf) |
 |         |    |                               | P (2016)    |      |
 |         |    |                               | E&P (2016)  |      |
-| Oct. 16 | M | Endogenous labor supply       | Ch. 7       | PS 3 |
+| Oct. 16 | M | Endogenous labor supply       | Ch. 7       | [PS 3](https://github.com/rickecon/OGcourse_F17/blob/master/ProblemSets/PS3/PS3.pdf) |
 | Oct. 18 | W | Endogenous labor supply       | Ch. 7       |      |
 | Oct. 23 | M | Endogenous labor supply       | Ch. 7       |      |
 | **Oct. 25** | **W** | **Midterm 1 (Chs. 1-7)** |          | PS 4 |
