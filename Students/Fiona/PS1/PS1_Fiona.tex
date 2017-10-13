@@ -1,0 +1,153 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{geometry}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1.25in,rmargin=1.25in}
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\footnotesize\textsl{Page \thepage\ of \pageref{LastPage}}}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+\usepackage[format=hang,font=normalsize,labelfont=bf]{caption}
+\usepackage{listings}
+\lstset{frame=single,
+  language=Python,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{harvard}
+\usepackage{setspace}
+\usepackage{float,color}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks,linkcolor=red,urlcolor=blue}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{derivation}{Derivation} % Number derivations on their own
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition} % Number propositions on their own
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+%\numberwithin{equation}{section}
+\bibliographystyle{aer}
+\newcommand\ve{\varepsilon}
+\newcommand\boldline{\arrayrulewidth{1pt}\hline}
+
+
+\begin{document}
+
+\begin{flushleft}
+  \textbf{\large{Problem Set \#1}} \\
+  MACS 40000, Dr. Evans \\
+  Fiona Fan 
+\end{flushleft}
+
+\vspace{5mm}
+
+\noindent\textbf{Problem 1}
+
+\textbf{Part (a).} The Lagrangian is:
+\begin{equation*}
+	\underset{c_{1,t}, c_{2,t+1}}{max}
+  L= (1-\beta)ln(c_{1,t})+\beta ln(c_{2,t+1})-\lambda (p_t c_{1,t}+p_{t+1} c_{2,t+1}-p_t e_1-p_{t+1} e_2)
+\end{equation*}
+
+To satisfy first order condition:
+\begin{equation*} 
+\frac{\partial L}{\partial c_{1,t}} = \frac{1-\beta}{c_{1,t}}-\lambda p_t = 0
+\end{equation*}
+\begin{equation} \label{c1foc}
+\Rightarrow \lambda = \frac{1-\beta}{c_{1,t}  p_t}
+\end{equation}
+\begin{equation*} 
+\frac{\partial L}{\partial c_{2,t+1}} = \frac{\beta}{c_{2,t+1}}-\lambda p_{t+1} = 0
+\end{equation*}
+\begin{equation} \label{c2foc}
+\Rightarrow \lambda = \frac{\beta}{c_{2,t+1} p_{t+1}}
+\end{equation}
+
+from \eqref{c1foc} and \eqref{c2foc} we can get the Euler equation:
+\begin{equation} \label{euler}
+c_{2,t+1}=\frac{\beta p_t}{(1-\beta) p_{t+1}} c_{1,t}
+\end{equation}
+
+To satisfy complementary slackness condition:
+\begin{equation*}
+\lambda (p_t c_{1,t}+p_{t+1} c_{2,t+1}-p_t e_1-p_{t+1} e_2) = 0
+\end {equation*}
+However, here $\lambda \neq 0$ because $\beta \neq 1$ and $c_{1,t} \neq 0$. Thus,
+\begin{equation} \label{constraint}
+p_t c_{1,t}+p_{t+1} c_{2,t+1}-p_t e_1-p_{t+1} e_2 = 0
+\end {equation}
+Substituting \eqref{euler} into \eqref{constraint}
+\begin{equation} \label{c1a}
+\Rightarrow c_{1,t}^*=\frac{(p_t e_1+p_{t+1} e_2)(1-\beta)}{p_t}
+\end {equation}
+\begin{equation} \label{c2a}
+\Rightarrow c_{2,t+1}^*=\frac{(p_t e_1+p_{t+1} e_2) \beta}{p_{t+1}}
+\end {equation}
+
+\textbf{Part (b).} The Lagrangian is:
+\begin{equation*}
+	\underset{c_{2,1}}{max}
+   L= \beta ln(c_{2,1})-\lambda (p_1 c_{2,1} - p_1 e_2)
+\end{equation*}
+
+To satisfy first order condition:
+\begin{equation*} 
+\frac{\partial L}{\partial c_{2,1}} = \frac{\beta}{c_{2,1}}-\lambda p1 = 0
+\end{equation*}
+To satisfy complementary slackness condition:
+\begin{equation*}
+\lambda (p_1 c_{2,1}-p_1 e_2) = 0
+\end {equation*}
+However, here $\lambda \neq 0$ because $\beta \neq 1$ and $c_{2,1} \neq 0$. Thus,
+\begin{equation*} 
+\Rightarrow c_{2,1}^*=\frac{p_1 e_2}{p_1} = e_2
+\end{equation*}
+
+\textbf{Part (c).}  Plugging our answer in part (b) into the CE budget constraint we have:
+
+\begin{align*}
+c_{1,1}^*+c_{2,1}^*=e_1+e_2\\
+c_{1,1}^*+e_2=e_1+e_2\\
+\Rightarrow c_{1,1}^*=e_1
+\end{align*}
+Here, both the young and old consume all their repective endowments. There is no inter-generational exchange happening. These answers are different from the answers in part (a).
+\begin{equation*}
+\{c_{1,t},c_{2,t}\}_{t=1}^\infty = \{e_1,e_2\}
+\end{equation*}
+Since there is no inter-generational exchange happening, the prices can be arbitrary. 
+
+\end{document}
+\begin{equation*}
+\end {equation*}
