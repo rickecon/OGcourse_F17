@@ -82,7 +82,7 @@ Final Exam   |    50  |  25% |
 | Oct. 16 | M | Endogenous labor supply       | Ch. 7       | [PS 3](https://github.com/rickecon/OGcourse_F17/blob/master/ProblemSets/PS3/PS3.pdf) |
 | Oct. 18 | W | Endogenous labor supply       | Ch. 7       |      |
 | Oct. 23 | M | Endogenous labor supply       | Ch. 7       |      |
-| **Oct. 25** | **W** | **Midterm 1 (Chs. 1-7)** |          | PS 4 |
+| **Oct. 25** | **W** | **Midterm 1 (Chs. 1-7)** |          | [PS 4](https://github.com/rickecon/OGcourse_F17/blob/master/ProblemSets/PS4/PS4.pdf) |
 | Oct. 30 |  M | Bequests: simple              | Ch. 10      |      |
 |         |    |                               | D (2015)    |      |
 |         |    |                               | DEMPRS (2016) |    |
