@@ -87,15 +87,15 @@ Final Exam   |    50  |  25% |
 |         |    |                               | D (2015)    |      |
 |         |    |                               | DEMPRS (2016) |    |
 | Nov. 1 | W | Bequests: calibrated from SCF | Ch. 10      |      |
-| Nov.  6 | M  | Population demographics       |  Ch. 9      | PS5  |
+| Nov.  6 | M  | Population demographics       |  Ch. 9      | [PS5](https://github.com/rickecon/OGcourse_F17/blob/master/ProblemSets/PS5/PS5.pdf)  |
 |         |    |                               | N (2015)    |      |
-| Nov. 8 | W | Population demographics       |  Ch. 9      |      |
+| Nov. 8 | W | Population demographics       |  Ch. 9      | [PS6](https://github.com/rickecon/OGcourse_F17/blob/master/ProblemSets/PS6/PS6.pdf) |
 | Nov. 13 | M | Population demographics       |  Ch. 9      |      |
 | Nov. 15 | W | Tax functions from microsimulation |  Ch. 12 |     |
 |         |    |                               | DEP (2016)  |      |
-| Nov. 20 | M | Tax functions from microsimulation | Ch. 12 | PS6  |
+| Nov. 20 | M | Tax functions from microsimulation | Ch. 12 | PS7  |
 | Nov. 22 | W | Tax functions from microsimulation | Ch. 12 |      |
-| Nov. 27 | M | Multiple industry model | Ch. 17   | PS 7 |
+| Nov. 27 | M | Multiple industry model | Ch. 17   | PS 8 |
 | Nov. 29 | W | Multiple industry model | Ch. 17   |      |
 |         |    | *Exam preparation (reading) days, Nov. 30-Dec. 1* |  |   |
 | **Dec. 6** | **W** | **Final Exam (comprehensive)** |      |      |
