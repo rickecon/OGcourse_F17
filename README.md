@@ -57,7 +57,7 @@ Midterm      |    50  |  25% |
 Final Exam   |    50  |  25% |
 **Total points** | **200** | **100%** |
 
-* **Homework:** I will assign 7 problem sets throughout the term, and I will drop your one lowest problem set score.
+* **Homework:** I will assign 8 problem sets throughout the term, and I will drop your one lowest problem set score.
 	* You must write and submit your own computer code, although I encourage you to collaborate with your fellow students. I **DO NOT** want to see a bunch of copies of identical code. I **DO** want to see each of you learning how to code these problems so that you could do it on your own.
 	* Problem set solutions, both written and code portions, will be turned in via a pull request from your private [GitHub.com](https://git-scm.com/) repository which is a fork of the class master repository on my account. (You will need to set up a GitHub account if you do not already have one.)
 	* Problem sets will be due on the day listed in the Daily Course Outline section of this syllabus (see below) unless otherwise specified. Late homework will not be graded.
