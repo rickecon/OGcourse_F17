@@ -83,10 +83,10 @@ Final Exam   |    50  |  25% |
 | Oct. 18 | W | Endogenous labor supply       | Ch. 7       |      |
 | Oct. 23 | M | Endogenous labor supply       | Ch. 7       |      |
 | **Oct. 25** | **W** | **Midterm 1 (Chs. 1-7)** |          | [PS 4](https://github.com/rickecon/OGcourse_F17/blob/master/ProblemSets/PS4/PS4.pdf) |
-| Oct. 30 |  M | Bequests: simple              | Ch. 10      |      |
+| Oct. 30 |  M | Bequests: simple              | Ch. 11      |      |
 |         |    |                               | D (2015)    |      |
 |         |    |                               | DEMPRS (2016) |    |
-| Nov. 1 | W | Bequests: calibrated from SCF | Ch. 10      |      |
+| Nov. 1 | W | Bequests: calibrated from SCF | Ch. 11      |      |
 | Nov.  6 | M  | Population demographics       |  Ch. 9      | [PS5](https://github.com/rickecon/OGcourse_F17/blob/master/ProblemSets/PS5/PS5.pdf)  |
 |         |    |                               | N (2015)    |      |
 | Nov. 8 | W | Population demographics       |  Ch. 9      | [PS6](https://github.com/rickecon/OGcourse_F17/blob/master/ProblemSets/PS6/PS6.pdf) |
