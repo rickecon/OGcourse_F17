@@ -129,6 +129,15 @@ def get_n(cvec, sigma, l_ub, b, upsilon, w, p, chi): # function for labor supply
         raise ValueError("failed to find an appropriate labor decision")
     return nvec
 
+def get_b_errors(cvec, r, *args): # function for calculating intertemporal euler error
+    beta, sigma = args
+    mu_c = MU_c_stitch(cvec[:-1], sigma)
+    mu_c1 = MU_c_stitch(cvec[1:], sigma)
+
+    b_errors = beta * (1 + r) * mu_c1 - mu_c
+
+    return b_errors
+
 
 ######## Calculate aggregates
 
