@@ -109,7 +109,7 @@ Final Exam   |    50  |  25% |
 * DeBacker, Jason, Richard W. Evans, and Kerk L. Phillips, "[Integrating Microsimulation Tax Functions into a DGE Macroeconomic Model: A Canonical Example](https://sites.google.com/site/rickecon/DEP_10pct.pdf)," mimeo (August 2016).
 * Evans, Richard W. and Jason DeBacker, *Overlapping Generations Models for Policy Analysis: Theory and Computation*, unpublished draft (2017).
 * Evans, Richard W. and Kerk L. Phillips, "[Advantages of an Ellipse when Modeling Leisure Utility](https://sites.google.com/site/rickecon/Elliptical.pdf)," *Computational Economics*, (forthcoming, 2016).
-* Furman, Jason, "Can Tax Reform Get Us to 3 Percent Growth?" [[Slides]()], Talk at New York Association for Business Economics (November 3, 2017).
+* Furman, Jason, "Can Tax Reform Get Us to 3 Percent Growth?" [[Slides](https://github.com/rickecon/OGcourse_F17/blob/master/Slides/furman20171103ppt.pdf)], Talk at New York Association for Business Economics (November 3, 2017).
 * Nishiyama, Shinichi, "Fiscal Policy Effects in a Heterogeneous-agent OLG economy with an Aging Population," *Journal of Economic Dynamics & Control*, 61, pp. 114-132 (December 2015).
 * Nishiyama, Shinichi and Kent Smetters, "Does Social Security Privatization Produce Efficiency Gains?," *Quarterly Journal of Economics*, 122:4, pp. 1677-1719 (November 2007).
 * Peterman, William, "Reconciling Micro and Macro Estimates of the Frisch Labor Supply Elasticity," *Economic Inquiry*, 54:1, pp. 100-120 (January 2016).
