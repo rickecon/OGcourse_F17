@@ -103,13 +103,13 @@ def get_TPI(params, b1vec, graphs):
 
     K1 = utils.get_K(b1vec)[0]
     # K: s=1 ~ S, sum of b: s=2 ~ S+1
-    Kpath_old = np.zeros(T + S - 2)
-    print (f'K1: {K1}, K_ss: {K_ss}')
+    Kpath_old = np.zeros(T + S )
+    # print (f'K1: {K1}, K_ss: {K_ss}')
     Kpath_old[:T] = np.linspace(K1, K_ss, T)  # Until reaching steady state
     Kpath_old[T:] = K_ss
     r = utils.get_r(Kpath_old[0], utils.get_L(nvec), (A, alpha, delta))
     BQ1 = (1 + r) * b1vec[-1]
-    BQpath_old = np.zeros(T + S - 2)
+    BQpath_old = np.zeros(T + S )
     BQpath_old[:T] = np.linspace(BQ1, BQ_ss, T)  # Until reaching steady state
     BQpath_old[T:] = BQ_ss
     L = np.sum(nvec)
@@ -128,9 +128,9 @@ def get_TPI(params, b1vec, graphs):
         wpath = utils.get_w(Kpath_old, L, w_params)
         # cpath, bpath, EulErrPath = get_cbepath(cbe_params, rpath, wpath, b1vec)
         # b: 2~S+1
-        bpath = np.append(b1vec.reshape(S,1), np.zeros((S, T+S-3)), axis=1)
-        cpath = np.zeros((S, T + S - 2))
-        EulErrPath = np.zeros((S, T + S - 2))
+        bpath = np.append(b1vec.reshape(S,1), np.zeros((S, T+S)), axis=1)
+        cpath = np.zeros((S, T + S ))
+        EulErrPath = np.zeros((S, T + S ))
         cpath[S - 1, 0] = ((1 + rpath[0]) * b1vec[S - 2] +
                            wpath[0] * nvec[S - 1])
         for p in range (2, S):
@@ -157,29 +157,36 @@ def get_TPI(params, b1vec, graphs):
             args_bt = (0, nvec, beta, sigma, wpath[t - 1: S + t - 1], rpath[t - 1: S + t - 1], BQpath_old[t - 1: S + t - 1],
             chi, bq_distr)
             bt = opt.root(utils.EulerSys_tpi, bvec_guess_t, args=(args_bt)).x
-            ct, c_cnstr_t = utils.get_cvec_tpi(rpath[t - 1: S + t - 1], wpath[t - 1: S + t - 1], nvec,
-                                               np.append(beg_wealth, bt), BQpath_old[t - 1: S + t - 1], bq_distr)
-            b_err_t = utils.EulerSys_ss(bt, beg_wealth, nvec, beta, sigma, wpath[t - 1: S + t - 1], rpath[t - 1: S + t - 1], BQpath_old[t - 1: S + t - 1],
+            # print (f'bt.shape: {bt.shape}, ')
+            #np.append(nvec,[0.2])
+            # rpath, wpath, bvec, nvec, bq, bq_distr
+            ct, c_cnstr_t = utils.get_cvec_tpi(rpath[t - 1: S + t - 1], wpath[t - 1: S + t - 1],np.append([0], bt),
+                                               nvec, BQpath_old[t - 1: S + t - 1], bq_distr)
+            b_err_t = utils.EulerSys_tpi(bt, 0, nvec, beta, sigma, wpath[t - 1: S + t - 1], rpath[t - 1: S + t - 1], BQpath_old[t - 1: S + t - 1],
                                         chi, bq_distr)
 
             DiagMask = np.eye(S)
+
             bt_path = DiagMask * bt
+            # print(f'bt: {bt.shape}, btpath:{bt_path.shape}, t:{t}, bpath:{bpath.shape}')
             ct_path = DiagMask * ct
             et_path = DiagMask * b_err_t
             bpath[:, t: S + t] += bt_path
             cpath[:, t: S + t] += ct_path
             EulErrPath[:, t: S + t] += et_path
 
-        Kpath_new = np.zeros(T + S - 2)
+        Kpath_new = np.zeros(T + S)
         Kpath_new[:T], Kpath_cnstr = utils.get_K(bpath[:, :T])
-        Kpath_new[T:] = K_ss * np.ones(S - 2)
+        Kpath_new[T:] = K_ss * np.ones(S)
         Kpath_cnstr = np.append(Kpath_cnstr,
-                                np.zeros(S - 2, dtype=bool))
+                                np.zeros(S, dtype=bool))
         Kpath_new[Kpath_cnstr] = 0.1
 
-        BQpath_new = np.zeros(T + S - 2)
-        BQpath_new[:T] = (1 + rpath) * bpath [S, :]
-        BQpath_new[T:] = BQ_ss * np.ones(S - 2)
+        BQpath_new = np.zeros(T + S)
+        # print (f'Here: bpath {bpath[S, :T].shape}')
+        #, BQ:{BQpath_new.shape}, rpath:{rpath[:T].shape}
+        BQpath_new[:T] = (1 + rpath[:T]) * bpath [-1, :T]
+        BQpath_new[T:] = BQ_ss * np.ones(S)
 
         abs2 = (((Kpath_old[:T] - Kpath_new[:T]) / Kpath_old[:T] * 100) ** 2).sum() + \
                (((BQpath_old[:T] - BQpath_new[:T]) / BQpath_old[:T] * 100) ** 2).sum()
@@ -193,7 +200,7 @@ def get_TPI(params, b1vec, graphs):
     BQ_path = BQpath_old
     Kpath = Kpath_old
     Ypath = ss.get_Y((A, alpha), Kpath, L)
-    Cpath = np.zeros(T + S - 2)
+    Cpath = np.zeros(T + S)
     Cpath[:T - 1] = ss.get_C(cpath[:, :T - 1])
     Cpath[T - 1:] = C_ss * np.ones(S - 1)
     RCerrPath = (Ypath[:-1] - Cpath[:-1] - Kpath[1:] + (1 - delta) * Kpath[:-1])

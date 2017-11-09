@@ -40,14 +40,7 @@ def get_r(K, L, params):
 Household utilities
 '''
 # #Calculate the remaning consumptions in one's lifetime.
-# def get_c(c1, r, beta, sigma, p):
-#     cvec = np.zeros(p)
-#     cvec[0] = c1
-#     cs = c1
-#     for s in range (p - 1):
-#         cvec[s + 1] = cs * (beta * (1 + r[s + 1])) ** (1 / sigma)
-#         cs = cvec[s + 1]
-#     return cvec
+
 
 def get_cvec_ss(r, w, bvec, nvec, bq_distr):
     #bvec=b2 ~ bS+1
@@ -73,7 +66,7 @@ def get_cvec_tpi(rpath, wpath, bvec, nvec, bq, bq_distr):
     b=bvec[:-1]
     b1=bvec[1:]
     # print(f"bvec shape is: {bvec.shape}, b shape is: {b.shape}, bq {bq}, bq_distr {bq_distr.shape}, w {w}, nvec {nvec.shape}, r {r}") c_vec: {c_vec.shape},
-    print (f'b: {b.shape}, rpath{rpath.shape}, wpath:{wpath.shape}, bq_distr{bq_distr.shape}, bq{bq.shape}, nvec{nvec.shape}')
+    # print (f'b: {b.shape}, rpath{rpath.shape}, wpath:{wpath.shape}, bq_distr{bq_distr.shape}, bq{bq.shape}, nvec{nvec.shape}')
     c_vec = (1 + rpath) * b + wpath * nvec - b1 + bq * bq_distr
     c_cnstr = c_vec <= 0
     # print(f"cvec shape is: {c_vec.shape}")
@@ -119,8 +112,7 @@ def EulerSys_tpi(bvec, *args):
     muc = MU_c_stitch(cvec, sigma)
     errors = np.zeros(np.shape(cvec))
     errors[:-1] = muc[:-1] - beta * (1 + rpath[1:]) * muc[1:]
-    errors[-1] = chi[-1] * (b[-1]) ** (-sigma)- \
-              ((1 + rpath[-1]) * b[-2] + wpath[-1] * nvec[-1] + bq_distr[-1] * BQpath[-1] - b[-1]) ** (-sigma)
+    errors[-1] = chi[-1] * (b[-1]) ** (-sigma)- ((1 + rpath[-1]) * b[-2] + wpath[-1] * nvec[-1] + bq_distr[-1] * BQpath[-1] - b[-1]) ** (-sigma)
 
     return errors
 
