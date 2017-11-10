@@ -1,0 +1,99 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{geometry}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1.25in,rmargin=1.25in}
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\footnotesize\textsl{Page \thepage\ of \pageref{LastPage}}}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+\usepackage[format=hang,font=normalsize,labelfont=bf]{caption}
+\usepackage{listings}
+\lstset{frame=single,
+  language=Python,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{harvard}
+\usepackage{setspace}
+\usepackage{float,color}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks,linkcolor=red,urlcolor=blue}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{derivation}{Derivation} % Number derivations on their own
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition} % Number propositions on their own
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+%\numberwithin{equation}{section}
+\bibliographystyle{aer}
+
+
+
+\begin{document}
+
+\begin{flushleft}
+  \textbf{\large{Problem Set 6}} \\
+  MACS 40000, Dr. Evans \\
+  Fiona Fan
+\end{flushleft}
+
+\vspace{5mm}
+
+\noindent\textbf{Problem 11.1 (a)}\\
+\includegraphics[scale=0.5]{images/distribution.png}
+
+
+\noindent\textbf{Problem 11.1 (b)}\\
+\includegraphics[scale=0.5]{images/bq_pct_quantile.png}
+\\
+\noindent\textbf{Problem 11.2 (a)}\\
+Please see file $problem2.csv$. 
+
+
+\noindent\textbf{Problem 11.2 (b)}\\
+\includegraphics[scale=0.5]{images/ss_bc.png}
+
+\noindent\textbf{Problem 11.3 (a)}\\
+\includegraphics[scale=0.5]{images/rpath.png}
+\includegraphics[scale=0.5]{images/wpath.png}
+\includegraphics[scale=0.5]{images/Kpath.png}
+\includegraphics[scale=0.5]{images/BQpath.png}
+
+
+\noindent\textbf{Problem 11.3 (b)}\\
+\includegraphics[scale=0.5]{images/b25path.png}
+\\
+\end{document}
