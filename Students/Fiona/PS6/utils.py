@@ -112,7 +112,8 @@ def EulerSys_tpi(bvec, *args):
     muc = MU_c_stitch(cvec, sigma)
     errors = np.zeros(np.shape(cvec))
     errors[:-1] = muc[:-1] - beta * (1 + rpath[1:]) * muc[1:]
-    errors[-1] = chi[-1] * (b[-1]) ** (-sigma)- ((1 + rpath[-1]) * b[-2] + wpath[-1] * nvec[-1] + bq_distr[-1] * BQpath[-1] - b[-1]) ** (-sigma)
+    errors[-1] = chi[-1] * (b[-1]) ** (-sigma)- ((1 + rpath[-1]) * b[-2] + wpath[-1] * nvec[-1] + bq_distr[-1] *
+                                                 BQpath[-1] - b[-1]) ** (-sigma)
 
     return errors
 

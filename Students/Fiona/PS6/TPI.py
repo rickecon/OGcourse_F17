@@ -32,20 +32,21 @@ def get_path(x1, xT, T):
 #     return cvec, c_cnstr
 
 
-def solver(params, beg_wealth, nvec, rpath, wpath, b_init, bq_distr, chi):
-
-    S, beta, sigma, TPI_tol, A, alpha, delta = params
-    # p = int(S - beg_age + 1)
-
-    b_guess = 1.01 * b_init
-    bq = b_guess [-1]
-    eullf_objs = (beta, sigma, beg_wealth, nvec, rpath, wpath, bq_distr, chi, bq)
-    bpath = opt.root(utils.EulerSys_tpi, b_guess, args=(eullf_objs)).x
-    cpath, c_cnstr = utils.get_cvec_tpi(rpath, wpath, nvec,
-                                 np.append(beg_wealth, bpath))
-
-    b_err_vec = utils.EulerSys_ss(bpath, beta, sigma, nvec, A, alpha, delta, bq_distr, chi)
-    return bpath, cpath, b_err_vec
+# def solver(params, beg_wealth, nvec, rpath, wpath, b_init, bq_distr, chi):
+#
+#     S, beta, sigma, TPI_tol, A, alpha, delta = params
+#     # p = int(S - beg_age + 1)
+#
+#     b_guess = 1.01 * b_init
+#     bq = b_guess [-1]
+#     eullf_objs = (beg_wealth, nvec, beta, sigma, wpath, rpath,bq, chi, bq_distr)
+#     #beg_wealth, nvec, beta, sigma, wpath, rpath, BQpath, chi, bq_distr
+#     bpath = opt.root(utils.EulerSys_tpi, b_guess, args=(eullf_objs)).x
+#     cpath, c_cnstr = utils.get_cvec_tpi(rpath, wpath,
+#                                  np.append(beg_wealth, bpath),nvec, bq, bq_distr)
+#
+#     b_err_vec = utils.EulerSys_ss(bpath, beta, sigma, nvec, A, alpha, delta, bq_distr, chi)
+#     return bpath, cpath, b_err_vec
 #
 #
 # def get_cbepath(params, rpath, wpath, bvec1):
@@ -128,29 +129,29 @@ def get_TPI(params, b1vec, graphs):
         wpath = utils.get_w(Kpath_old, L, w_params)
         # cpath, bpath, EulErrPath = get_cbepath(cbe_params, rpath, wpath, b1vec)
         # b: 2~S+1
-        bpath = np.append(b1vec.reshape(S,1), np.zeros((S, T+S)), axis=1)
-        cpath = np.zeros((S, T + S ))
-        EulErrPath = np.zeros((S, T + S ))
-        cpath[S - 1, 0] = ((1 + rpath[0]) * b1vec[S - 2] +
-                           wpath[0] * nvec[S - 1])
-        for p in range (2, S):
+        bpath = np.append(b1vec.reshape(S,1), np.zeros((S, T+S-2)), axis=1)
+        cpath = np.zeros((S, T + S-1 ))
+        EulErrPath = np.zeros((S, T + S-1 ))
+        cpath[S - 1, 0] = ((1 + rpath[0]) * b1vec[S - 2] + wpath[0] * nvec[S - 1])
+        for p in range (1, S):
             bvec_guess = np.diagonal(bpath[S - p:, :p])
             beg_wealth = bpath[S - p - 1, 0]
+            #beg_wealth, nvec, beta, sigma, wpath, rpath, BQpath, chi, bq_distr
             args_sol= (beg_wealth, nvec[-p:], beta, sigma, wpath[:p], rpath[:p], BQpath_old[:p], chi[-p:], bq_distr[-p:])
             b_sol = opt.root(utils.EulerSys_tpi, bvec_guess, args=(args_sol)).x
+            #rpath, wpath, bvec, nvec, bq, bq_distr
             cp, c_cnstr_p = utils.get_cvec_tpi(rpath[:p], wpath[:p], np.append(beg_wealth, b_sol), nvec[-p:],
                                                BQpath_old[:p],bq_distr[-p:])
             # rpath, wpath, bvec, nvec, bq, bq_distr
             b_err_p = utils.EulerSys_tpi(b_sol, beg_wealth, nvec[-p:], beta, sigma, wpath[:p], rpath[:p], BQpath_old[:p], chi[-p:], bq_distr[-p:])
 
             # Insert the vector lifetime solutions diagonally (twist donut)
-            DiagMask = np.eye(p)
-            bp_path = DiagMask * b_sol
-            cp_path = DiagMask * cp
-            ep_path = DiagMask * b_err_p
-            bpath[S - p:, :p] += bp_path
-            cpath[S - p:, :p] += cp_path
-            EulErrPath[S - p:, :p] += ep_path
+            bp_path = np.eye(p) * b_sol
+            cp_path = np.eye(p) * cp
+            ep_path = np.eye(p) * b_err_p
+            bpath[S - p:, 1:p+1] += bp_path
+            cpath[S - p:, 1:p+1] += cp_path
+            EulErrPath[S - p:, 1:p+1] += ep_path
 
         for t in range(1, T):
             bvec_guess_t = np.diagonal(bpath[:, t - 1:S + t - 1])
@@ -165,12 +166,12 @@ def get_TPI(params, b1vec, graphs):
             b_err_t = utils.EulerSys_tpi(bt, 0, nvec, beta, sigma, wpath[t - 1: S + t - 1], rpath[t - 1: S + t - 1], BQpath_old[t - 1: S + t - 1],
                                         chi, bq_distr)
 
-            DiagMask = np.eye(S)
+            # DiagMask = np.eye(S)
 
-            bt_path = DiagMask * bt
+            bt_path = np.eye(p+1) * bt
             # print(f'bt: {bt.shape}, btpath:{bt_path.shape}, t:{t}, bpath:{bpath.shape}')
-            ct_path = DiagMask * ct
-            et_path = DiagMask * b_err_t
+            ct_path = np.eye(p+1) * ct
+            et_path = np.eye(p+1) * b_err_t
             bpath[:, t: S + t] += bt_path
             cpath[:, t: S + t] += ct_path
             EulErrPath[:, t: S + t] += et_path
@@ -199,10 +200,10 @@ def get_TPI(params, b1vec, graphs):
 
     BQ_path = BQpath_old
     Kpath = Kpath_old
-    Ypath = ss.get_Y((A, alpha), Kpath, L)
-    Cpath = np.zeros(T + S)
-    Cpath[:T - 1] = ss.get_C(cpath[:, :T - 1])
-    Cpath[T - 1:] = C_ss * np.ones(S - 1)
+    Ypath = utils.get_Y(Kpath,L, (A, alpha))
+    Cpath = np.zeros(Kpath.shape)
+    Cpath[:T - 1] = utils.get_C(cpath[:, :T - 1])
+    Cpath[T - 1:] = C_ss * np.ones(S + 1)
     RCerrPath = (Ypath[:-1] - Cpath[:-1] - Kpath[1:] + (1 - delta) * Kpath[:-1])
     tpi_time = time.clock() - start_time
 
@@ -244,10 +245,10 @@ def get_TPI(params, b1vec, graphs):
             os.makedirs(output_dir)
 
         # Plot time path of aggregate capital stock
-        tvec = np.linspace(1, T + S - 2, T + S - 2)
+        tvec = np.linspace(1, T + 5, T + 5)
         minorLocator = MultipleLocator(1)
         fig, ax = plt.subplots()
-        plt.plot(tvec, Kpath, marker='D')
+        plt.plot(tvec, Kpath[:T+5], marker='D')
         # for the minor ticks, use no labels; default NullFormatter
         ax.xaxis.set_minor_locator(minorLocator)
         plt.grid(b=True, which='major', color='0.65', linestyle='-')
@@ -258,9 +259,24 @@ def get_TPI(params, b1vec, graphs):
         plt.savefig(output_path)
         # plt.show()
 
+        # Plot time path of aggregate capital stock
+        tvec = np.linspace(1, T + 5, T + 5)
+        minorLocator = MultipleLocator(1)
+        fig, ax = plt.subplots()
+        plt.plot(tvec, BQ_path[:T + 5], marker='D')
+        # for the minor ticks, use no labels; default NullFormatter
+        ax.xaxis.set_minor_locator(minorLocator)
+        plt.grid(b=True, which='major', color='0.65', linestyle='-')
+        plt.title('Time path for bequest BQ')
+        plt.xlabel(r'Period $t$')
+        plt.ylabel(r'Bequest $BQ$')
+        output_path = os.path.join(output_dir, "BQpath")
+        plt.savefig(output_path)
+        # plt.show()
+
         # Plot time path of aggregate output (GDP)
         fig, ax = plt.subplots()
-        plt.plot(tvec, Ypath, marker='D')
+        plt.plot(tvec, Ypath[:T+5], marker='D')
         # for the minor ticks, use no labels; default NullFormatter
         ax.xaxis.set_minor_locator(minorLocator)
         plt.grid(b=True, which='major', color='0.65', linestyle='-')
@@ -273,7 +289,7 @@ def get_TPI(params, b1vec, graphs):
 
         # Plot time path of aggregate consumption
         fig, ax = plt.subplots()
-        plt.plot(tvec, Cpath, marker='D')
+        plt.plot(tvec, Cpath[:T+5], marker='D')
         # for the minor ticks, use no labels; default NullFormatter
         ax.xaxis.set_minor_locator(minorLocator)
         plt.grid(b=True, which='major', color='0.65', linestyle='-')
@@ -286,7 +302,7 @@ def get_TPI(params, b1vec, graphs):
 
         # Plot time path of real wage
         fig, ax = plt.subplots()
-        plt.plot(tvec, wpath, marker='D')
+        plt.plot(tvec, wpath[:T+5], marker='D')
         # for the minor ticks, use no labels; default NullFormatter
         ax.xaxis.set_minor_locator(minorLocator)
         plt.grid(b=True, which='major', color='0.65', linestyle='-')
@@ -299,7 +315,7 @@ def get_TPI(params, b1vec, graphs):
 
         # Plot time path of real interest rate
         fig, ax = plt.subplots()
-        plt.plot(tvec, rpath, marker='D')
+        plt.plot(tvec, rpath[:T+5], marker='D')
         # for the minor ticks, use no labels; default NullFormatter
         ax.xaxis.set_minor_locator(minorLocator)
         plt.grid(b=True, which='major', color='0.65', linestyle='-')
@@ -310,39 +326,20 @@ def get_TPI(params, b1vec, graphs):
         plt.savefig(output_path)
         # plt.show()
 
-        # Plot time path of individual savings distribution
-        tgridT = np.linspace(1, T, T)
-        sgrid2 = np.linspace(2, S, S - 1)
-        tmatb, smatb = np.meshgrid(tgridT, sgrid2)
-        cmap_bp = matplotlib.cm.get_cmap('summer')
-        fig = plt.figure()
-        ax = fig.gca(projection='3d')
-        ax.set_xlabel(r'period-$t$')
-        ax.set_ylabel(r'age-$s$')
-        ax.set_zlabel(r'individual savings $b_{s,t}$')
-        strideval = max(int(1), int(round(S / 10)))
-        ax.plot_surface(tmatb, smatb, bpath[:, :T], rstride=strideval,
-                        cstride=strideval, cmap=cmap_bp)
-        output_path = os.path.join(output_dir, "bpath")
+
+        # Plot time path of real wage
+        fig, ax = plt.subplots()
+        plt.plot(tvec, bpath[24, :T+5], marker='D')
+        # for the minor ticks, use no labels; default NullFormatter
+        ax.xaxis.set_minor_locator(minorLocator)
+        plt.grid(b=True, which='major', color='0.65', linestyle='-')
+        plt.title('Time path for savings by 25-year-olds $b_{25}$')
+        plt.xlabel(r'Period $t$')
+        plt.ylabel(r'$b_{25}$')
+        output_path = os.path.join(output_dir, "b25path")
         plt.savefig(output_path)
         # plt.show()
 
-        # Plot time path of individual consumption distribution
-        tgridTm1 = np.linspace(1, T - 1, T - 1)
-        sgrid = np.linspace(1, S, S)
-        tmatc, smatc = np.meshgrid(tgridTm1, sgrid)
-        cmap_cp = matplotlib.cm.get_cmap('summer')
-        fig = plt.figure()
-        ax = fig.gca(projection='3d')
-        ax.set_xlabel(r'period-$t$')
-        ax.set_ylabel(r'age-$s$')
-        ax.set_zlabel(r'individual consumption $c_{s,t}$')
-        strideval = max(int(1), int(round(S / 10)))
-        ax.plot_surface(tmatc, smatc, cpath[:, :T - 1],
-                        rstride=strideval, cstride=strideval,
-                        cmap=cmap_cp)
-        output_path = os.path.join(output_dir, "cpath")
-        plt.savefig(output_path)
-        # plt.show()
+        
 
     return tpi_output

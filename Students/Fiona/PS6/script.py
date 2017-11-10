@@ -112,7 +112,7 @@ bq_tot_50 = get_bq_tot(df_50, 21, 100, graph=False)
 bq_tot_75 = get_bq_tot(df_75, 21, 100, graph=False)
 bq_tot_100 = get_bq_tot(df_100, 21, 100, graph=False)
 
-bq_tot_mat=[bq_tot_25, bq_tot_50, bq_tot_75, bq_tot_100]
+bq_tot_mat=[bq_tot_25/sum(bq_tot_25), bq_tot_50/sum(bq_tot_50), bq_tot_75/sum(bq_tot_75), bq_tot_100/sum(bq_tot_100)]
 
 graph2=True
 if graph2:
