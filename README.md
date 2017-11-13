@@ -91,7 +91,7 @@ Final Exam   |    50  |  25% |
 |         |    |                               | N (2015)    |      |
 | Nov. 8 | W | Population demographics       |  Ch. 9      | [PS6](https://github.com/rickecon/OGcourse_F17/blob/master/ProblemSets/PS6/PS6.pdf) |
 | Nov. 13 | M | Population demographics       |  Ch. 9      |      |
-| Nov. 15 | W | Tax functions from microsimulation |  Ch. 12 | PS7 |
+| Nov. 15 | W | Tax functions from microsimulation |  Ch. 12 | [PS7](https://github.com/rickecon/OGcourse_F17/blob/master/ProblemSets/PS7/PS7.pdf) |
 |         |    |                               | DEP (2016)  |      |
 | Nov. 20 | M | Tax functions from microsimulation | Ch. 12 |   |
 | Nov. 22 | W | Tax functions from microsimulation | Ch. 12 |      |
