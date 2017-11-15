@@ -94,8 +94,8 @@ Final Exam   |    50  |  25% |
 | Nov. 15 | W | Tax functions from microsimulation |  Ch. 12 | [PS7](https://github.com/rickecon/OGcourse_F17/blob/master/ProblemSets/PS7/PS7.pdf) |
 |         |    |                               | DEP (2016)  |      |
 | Nov. 20 | M | Tax functions from microsimulation | Ch. 12 |   |
-| Nov. 22 | W | Tax functions from microsimulation | Ch. 12 |      |
-| Nov. 27 | M | Multiple industry model | Ch. 17   | PS 8 |
+| Nov. 22 | W | Tax functions from microsimulation | Ch. 12 | [PS 8](https://github.com/rickecon/OGcourse_F17/blob/master/ProblemSets/PS8/PS8.pdf) |
+| Nov. 27 | M | Multiple industry model | Ch. 17   |      |
 | Nov. 29 | W | Multiple industry model | Ch. 17   |      |
 |         |    | *Exam preparation (reading) days, Nov. 30-Dec. 1* |  |   |
 | **Dec. 6** | **W** | **Final Exam (comprehensive)** |      |      |
