@@ -86,17 +86,17 @@ Final Exam   |    50  |  25% |
 | Oct. 30 |  M | Bequests: simple              | Ch. 11      |      |
 |         |    |                               | D (2015)    |      |
 |         |    |                               | DEMPRS (2016) |    |
-| Nov. 1 | W | Bequests: calibrated from SCF | Ch. 11      |      |
-| Nov.  6 | M  | Population demographics       |  Ch. 9      | [PS5](https://github.com/rickecon/OGcourse_F17/blob/master/ProblemSets/PS5/PS5.pdf)  |
+| Nov. 1 | W | Bequests: simple                | Ch. 11 |      |
+| Nov.  6 | M  | Bequests: calibrated from SCF |  Ch. 11 | [PS5](https://github.com/rickecon/OGcourse_F17/blob/master/ProblemSets/PS5/PS5.pdf)  |
 |         |    |                               | N (2015)    |      |
-| Nov. 8 | W | Population demographics       |  Ch. 9      | [PS6](https://github.com/rickecon/OGcourse_F17/blob/master/ProblemSets/PS6/PS6.pdf) |
-| Nov. 13 | M | Population demographics       |  Ch. 9      |      |
-| Nov. 15 | W | Tax functions from microsimulation |  Ch. 12 | [PS7](https://github.com/rickecon/OGcourse_F17/blob/master/ProblemSets/PS7/PS7.pdf) |
+| Nov. 8 | W | Population demographics       | Ch. 10 | [PS6](https://github.com/rickecon/OGcourse_F17/blob/master/ProblemSets/PS6/PS6.pdf) |
+| Nov. 13 | M | Population demographics       | Ch. 10 |      |
+| Nov. 15 | W | Population demographics |  Ch. 10 | [PS7](https://github.com/rickecon/OGcourse_F17/blob/master/ProblemSets/PS7/PS7.pdf) |
 |         |    |                               | DEP (2016)  |      |
-| Nov. 20 | M | Tax functions from microsimulation | Ch. 12 |   |
-| Nov. 22 | W | Tax functions from microsimulation | Ch. 12 | [PS 8](https://github.com/rickecon/OGcourse_F17/blob/master/ProblemSets/PS8/PS8.pdf) |
-| Nov. 27 | M | Multiple industry model | Ch. 17   |      |
-| Nov. 29 | W | Multiple industry model | Ch. 17   |      |
+| Nov. 20 | M | Tax functions in OG model | Ch. 14 |   |
+| Nov. 22 | W | Tax functions from microsimulation | Ch. 14 | [PS 8](https://github.com/rickecon/OGcourse_F17/blob/master/ProblemSets/PS8/PS8.pdf) |
+| Nov. 27 | M | Tax functions from microsimulation | Ch. 14 |      |
+| Nov. 29 | W | Multiple industry model | Ch. 17   | PS9  |
 |         |    | *Exam preparation (reading) days, Nov. 30-Dec. 1* |  |   |
 | **Dec. 6** | **W** | **Final Exam (comprehensive)** |      |      |
 |         |     | **1:30-3:30p.m. in Swift 208** |           |      |
