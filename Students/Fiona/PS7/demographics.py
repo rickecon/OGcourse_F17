@@ -168,11 +168,11 @@ def get_imm_resid (tot_per, graph, filename = pop_file_name):
         plt.close()
     return imm_tp
 
-def get_omega_stable(E,S, graph, filename = pop_file_name):
+def get_omega_stable(E,S,T, graph, filename = pop_file_name):
     tot_per = E+S
     mort_rates, infmort_rate = get_mort(tot_per, False)
     fert_rates = get_fert(tot_per, False)
-    print(fert_rates.sum())
+    # print(fert_rates.sum())
     imm_rates = get_imm_resid(tot_per, False)
     df = pd.read_csv(filename)
     pop_12 = np.array([float(''.join(x.split(','))) for x in df['2012'][:-1]])
@@ -180,15 +180,21 @@ def get_omega_stable(E,S, graph, filename = pop_file_name):
     #0.72%, consistent with 0.7% in 2016, by Google
     gn_stable = pop_13.sum()/pop_12.sum() -1
 
-    om_mat = (1-mort_rates) * np.eye(tot_per,k=-1)
-    om_mat += imm_rates * np.eye(tot_per)
-    om_mat[0,:] += (1-infmort_rate)*fert_rates[:]
-    print (om_mat[0,:].sum())
-    w, v = LA.eig(om_mat)
-    print(f"The closest eigenvalue to 1+g is: {w[np.abs(w - (1+gn_stable)).argmin()]}")
-    omega_stable = v[np.abs(w - (1+gn_stable)).argmin()]
-    print (omega_stable.shape)
-    age_tot = np.arange(1,tot_per+1)
+
+
+    omega_stable, om_mat, gn_r = solve_mat (infmort_rate, mort_rates,fert_rates, imm_rates,gn_stable,tot_per)
+
+    age_tot = np.arange(1,E+S+1)
+    omega_2013 = pop_13/pop_13.sum() *10
+    mat = np.tile(omega_stable[:S].reshape(S,1),T+S-2)
+    mat [:,0] = omega_2013[:S]
+    print (mat[:,1].shape)
+    print (om_mat[:S,:S].shape)
+    print ((om_mat[:S,:S].dot(mat[:,1])).shape)
+    print(gn_r)
+    for i in range (1, S+1):
+        mat[:,i] = 1/(1+gn_r) * (om_mat[:S,:S].dot(mat[:,i-1]))
+     
 
     if graph:
         cur_path = os.path.split(os.path.abspath(__file__))[0]
@@ -199,19 +205,47 @@ def get_omega_stable(E,S, graph, filename = pop_file_name):
 
         fig, ax = plt.subplots()
         # 'r-',
-        ax.plot(age_tot, omega_stable)
+        ax.plot(age_tot[E:tot_per+1], mat[:,0], label='t=1')
+        ax.plot(age_tot[E:tot_per], mat[:,9], label='t=10')
+        ax.plot(age_tot[E:tot_per], mat[:,29], label='t=30')
+        ax.plot(age_tot[E:tot_per], mat[:,T-1], label=f't={S+T}')
         #     plt.plot(x_vec, y_vec)
         plt.title(f'Population Distribution', fontsize=20)
         plt.grid(b=True, which='major', color='0.65', linestyle='-')
         plt.xlabel('Age')
-        plt.ylabel('%')
-        # plt.legend()
+        plt.ylabel(r'$\hat{\omega}$')
+        plt.legend()
+        # plt.show()
+        output_path = os.path.join(output_dir, f'population_dist_times')
+        plt.savefig(output_path)
+        plt.close()
+
+        fig, ax = plt.subplots()
+        # 'r-',
+        ax.plot(age_tot, omega_2013, label='2013 data')
+        ax.plot(age_tot, omega_stable, label='steady state')
+        #     plt.plot(x_vec, y_vec)
+        plt.title(f'Population Distribution', fontsize=20)
+        plt.grid(b=True, which='major', color='0.65', linestyle='-')
+        plt.xlabel('Age')
+        plt.ylabel(r'$\hat{\omega}$')
+        plt.legend()
         # plt.show()
         output_path = os.path.join(output_dir, f'population_dist')
         plt.savefig(output_path)
         plt.close()
 
-
+def solve_mat (infmort_rate, mort_rates,fert_rates, imm_rates,gn_stable,tot_per):
+    om_mat = (1 - mort_rates) * np.eye(tot_per, k=-1)
+    om_mat += imm_rates * np.eye(tot_per)
+    om_mat[0, :] += (1 - infmort_rate) * fert_rates[:]
+    e_values, e_vectors = LA.eig(om_mat)
+    e_values_2 = e_values[e_values.real>1]
+    e_vectors_2 = e_vectors[:, e_values.real>1]
+    ind = np.abs(e_values_2.real - (1 + gn_stable)).argmin()
+    omega = e_vectors_2[:, ind].real
+    gn_r = e_values_2[ind]-1
+    return omega, om_mat, gn_r.real
 
 # get_fert(80, True)
 # get_fert(20, True)
@@ -223,5 +257,5 @@ def get_omega_stable(E,S, graph, filename = pop_file_name):
 # print (mort_rates.shape)
 
 # get_imm_resid (20, True)
-get_omega_stable(20,80,True)
+get_omega_stable(20,80, 5,True)
 # print (gn_stable)  
