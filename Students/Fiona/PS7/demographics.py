@@ -177,25 +177,30 @@ def get_omega_stable(E,S,T, graph, filename = pop_file_name):
     df = pd.read_csv(filename)
     pop_12 = np.array([float(''.join(x.split(','))) for x in df['2012'][:-1]])
     pop_13 = np.array([float(''.join(x.split(','))) for x in df['2013'][:-1]])
-    #0.72%, consistent with 0.7% in 2016, by Google
-    gn_stable = pop_13.sum()/pop_12.sum() -1
-
-
-
+    gn_0 = pop_13.sum()/pop_12.sum() -1
+    gn_stable = 0.007
     omega_stable, om_mat, gn_r = solve_mat (infmort_rate, mort_rates,fert_rates, imm_rates,gn_stable,tot_per)
 
     age_tot = np.arange(1,E+S+1)
     omega_2013 = pop_13/pop_13.sum() *10
     mat = np.tile(omega_stable[:S].reshape(S,1),T+S-2)
     mat [:,0] = omega_2013[:S]
-    print (mat[:,1].shape)
-    print (om_mat[:S,:S].shape)
-    print ((om_mat[:S,:S].dot(mat[:,1])).shape)
-    print(gn_r)
-    for i in range (1, S+1):
-        mat[:,i] = 1/(1+gn_r) * (om_mat[:S,:S].dot(mat[:,i-1]))
-     
+    g_vec = np.ones(T+S-2) * 0.007
+    # g_vec[0]= gn_0
 
+
+
+    # print (mat[:,1].shape)
+    # print (om_mat[:S,:S].shape)
+    # print ((om_mat[:S,:S].dot(mat[:,1])).shape)
+    # print(gn_r)
+
+    for i in range (1, S+T-2):
+        # print (mat[:,i].shape,om_mat[:S,:S].shape, mat[:,i-1].shape, mat.shape)
+        mat[:,i] = om_mat[:S,:S].dot(mat[:,i-1])
+        g_vec[i-1] = mat[:,i].sum()/mat[:,i-1].sum() -1
+    g_vec[-1]=g_vec[-2]
+    omega_mat = mat / (1+g_vec)
     if graph:
         cur_path = os.path.split(os.path.abspath(__file__))[0]
         output_fldr = "images_dem"
@@ -205,10 +210,10 @@ def get_omega_stable(E,S,T, graph, filename = pop_file_name):
 
         fig, ax = plt.subplots()
         # 'r-',
-        ax.plot(age_tot[E:tot_per+1], mat[:,0], label='t=1')
-        ax.plot(age_tot[E:tot_per], mat[:,9], label='t=10')
-        ax.plot(age_tot[E:tot_per], mat[:,29], label='t=30')
-        ax.plot(age_tot[E:tot_per], mat[:,T-1], label=f't={S+T}')
+        ax.plot(age_tot[E:tot_per+1], omega_mat[:,0], label='t=1')
+        ax.plot(age_tot[E:tot_per], omega_mat[:,9], label='t=10')
+        ax.plot(age_tot[E:tot_per], omega_mat[:,29], label='t=30')
+        ax.plot(age_tot[E:tot_per], omega_mat[:,T-1], label=f't={S+T}')
         #     plt.plot(x_vec, y_vec)
         plt.title(f'Population Distribution', fontsize=20)
         plt.grid(b=True, which='major', color='0.65', linestyle='-')
@@ -235,6 +240,21 @@ def get_omega_stable(E,S,T, graph, filename = pop_file_name):
         plt.savefig(output_path)
         plt.close()
 
+        fig, ax = plt.subplots()
+        tvec = np.arange(1, T+S-1)
+        # 'r-',
+        ax.plot(tvec,g_vec, label='population growth rate')
+        #     plt.plot(x_vec, y_vec)
+        plt.title(f'Population Distribution', fontsize=20)
+        plt.grid(b=True, which='major', color='0.65', linestyle='-')
+        plt.xlabel('Age')
+        plt.ylabel(r'$\hat{\omega}$')
+        plt.legend()
+        # plt.show()
+        output_path = os.path.join(output_dir, f'population_growth')
+        plt.savefig(output_path)
+        plt.close()
+
 def solve_mat (infmort_rate, mort_rates,fert_rates, imm_rates,gn_stable,tot_per):
     om_mat = (1 - mort_rates) * np.eye(tot_per, k=-1)
     om_mat += imm_rates * np.eye(tot_per)
@@ -257,5 +277,5 @@ def solve_mat (infmort_rate, mort_rates,fert_rates, imm_rates,gn_stable,tot_per)
 # print (mort_rates.shape)
 
 # get_imm_resid (20, True)
-get_omega_stable(20,80, 5,True)
+get_omega_stable(20,80, 160,True)
 # print (gn_stable)  
