@@ -96,7 +96,7 @@ Final Exam   |    50  |  25% |
 | Nov. 20 | M | Tax functions in OG model | Ch. 14 |   |
 | Nov. 22 | W | Tax functions from microsimulation | Ch. 14 | [PS 8](https://github.com/rickecon/OGcourse_F17/blob/master/ProblemSets/PS8/PS8.pdf) |
 | Nov. 27 | M | Tax functions from microsimulation | Ch. 14 |      |
-| Nov. 29 | W | Multiple industry model | Ch. 17   | PS9  |
+| Nov. 29 | W | Multiple industry model | Ch. 17   | [PS9](https://github.com/rickecon/OGcourse_F17/blob/master/ProblemSets/PS9/PS9.pdf)  |
 |         |    | *Exam preparation (reading) days, Nov. 30-Dec. 1* |  |   |
 | **Dec. 6** | **W** | **Final Exam (comprehensive)** |      |      |
 |         |     | **1:30-3:30p.m. in Swift 208** |           |      |
